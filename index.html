@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#09100e" />
+  <title>Mossdeep: Endless Dungeon</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section id="startScreen" class="screen active" aria-labelledby="gameTitle">
+      <div class="brand-mark" aria-hidden="true"><span>✦</span></div>
+      <p class="eyebrow">A tiny adventure for waiting rooms</p>
+      <h1 id="gameTitle">MOSS<span>DEEP</span></h1>
+      <p class="tagline">Clear the dark. Find the stairs. Keep going.</p>
+
+      <div class="panel how-panel">
+        <div class="panel-heading"><span class="icon">✧</span><h2>How to play</h2></div>
+        <p>Choose a hero, defeat every monster, then find the mossy stairs to reach the next floor. Pick an upgrade between floors and build your perfect run.</p>
+        <div class="keyboard-tip"><b>Keyboard</b><span><kbd>WASD</kbd> move</span><span><kbd>SPACE</kbd> attack</span><span><kbd>E</kbd> interact</span></div>
+        <div class="mobile-tip"><b>Phone</b><span>Drag the joystick to move · tap the dungeon to attack · use <b>INTERACT</b> at the stairs</span></div>
+      </div>
+      <button id="startButton" class="primary-button">CHOOSE YOUR HERO <span>→</span></button>
+      <p class="tiny-note">No ads · Plays offline · Made for short adventures</p>
+    </section>
+
+    <section id="classScreen" class="screen" aria-labelledby="classTitle">
+      <button class="back-button" data-screen="startScreen">← back</button>
+      <p class="eyebrow">Floor 01 is waiting</p>
+      <h2 id="classTitle" class="screen-title">Choose your hero</h2>
+      <p class="screen-subtitle">Every class can win. How do you want to play?</p>
+      <div class="class-grid" id="classGrid"></div>
+      <button id="beginButton" class="primary-button" disabled>ENTER THE DUNGEON <span>→</span></button>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen" aria-label="Dungeon game">
+      <header class="hud">
+        <div class="hud-left"><div class="game-logo">MOSS<span>DEEP</span></div><div class="floor-label">FLOOR <strong id="floorNumber">01</strong></div><div class="score-label">SCORE <strong id="scoreText">0000</strong><small>BEST <span id="bestScoreText">0000</span></small></div></div>
+        <div class="hud-center"><div class="health-label"><span>HEALTH</span><strong id="healthText">100 / 100</strong></div><div class="health-track"><div id="healthFill" class="health-fill"></div></div><div class="cooldown-row"><span>ATK <b id="attackCooldownText">READY</b></span><span>R <b id="specialCooldownText">READY</b></span></div></div>
+        <div class="hud-right"><div class="best-floor">BEST FLOOR <strong id="bestFloorText">01</strong></div><div id="classBadge" class="class-badge">✦</div><button id="pauseButton" class="pause-button" aria-label="Pause">Ⅱ</button></div>
+      </header>
+      <div class="game-wrap">
+        <div class="objective" id="objective">DEFEAT ALL MONSTERS <span id="enemyCount">0</span></div>
+        <canvas id="gameCanvas" width="960" height="540" aria-label="Dungeon play area"></canvas>
+        <div id="messageToast" class="message-toast" aria-live="polite"></div>
+        <div id="levelCard" class="level-card hidden"></div>
+      </div>
+      <footer class="controls">
+        <div class="joystick" id="joystick" aria-label="Movement joystick"><div class="joystick-ring"><div id="joystickKnob" class="joystick-knob"></div></div><span>MOVE</span></div>
+        <div class="control-hint"><b id="attackHint">SPACE</b><span>to attack</span><b class="special-key">R</b><span>special</span></div>
+        <button id="interactButton" class="interact-button" disabled>INTERACT <span>E</span></button>
+      </footer>
+    </section>
+
+    <section id="deathScreen" class="screen" aria-labelledby="deathTitle">
+      <div class="brand-mark death-mark" aria-hidden="true"><span>✦</span></div>
+      <p class="eyebrow">YOUR RUN ENDED</p>
+      <h2 id="deathTitle" class="screen-title">The dungeon got you.</h2>
+      <p class="screen-subtitle">Every run makes the next one stronger.</p>
+      <div class="panel run-summary">
+        <div class="summary-row"><span>FLOOR REACHED</span><strong id="deathFloorText">01</strong></div>
+        <div class="summary-row"><span>DEEPEST FLOOR</span><strong id="deepestFloorText">01</strong></div>
+        <div class="summary-row"><span>SCORE</span><strong id="deathScoreText">0000</strong></div>
+        <div class="summary-row"><span>STUDS RAN</span><strong id="deathDistanceText">0</strong></div>
+        <div class="summary-row"><span>MONSTERS KILLED</span><strong id="deathKillsText">0</strong></div>
+        <div class="summary-row"><span>TIME SPENT</span><strong id="deathTimeText">00:00</strong></div>
+        <div class="summary-row"><span>HARDEST MONSTER BEATEN</span><strong id="hardestMonsterText">NONE YET</strong></div>
+      </div>
+      <div class="death-actions"><button id="playAgainButton" class="primary-button">PLAY AGAIN <span>↻</span></button><button id="changeHeroButton" class="back-button death-change">CHANGE HERO</button></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
